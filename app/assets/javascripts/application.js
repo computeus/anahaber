@@ -12,4 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require twitter/bootstrap
+//= require raphael-min
+//= require treemap-squared-0.5.min
+//= require jquery.isotope
+//= require jquery.ba-bbq.min
 //= require_tree .
