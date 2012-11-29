@@ -1,4 +1,6 @@
 Anahaber::Application.routes.draw do
+  get 'pages/get_news'
+
   get "pages/index"
 
   # The priority is based upon order of creation:
