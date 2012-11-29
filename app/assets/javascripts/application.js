@@ -17,4 +17,5 @@
 //= require treemap-squared-0.5.min
 //= require jquery.isotope
 //= require jquery.ba-bbq.min
+//= require gfeedfetcher
 //= require_tree .
