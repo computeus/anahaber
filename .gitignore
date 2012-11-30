@@ -16,3 +16,12 @@ rerun.txt
 pickle-email-*.html
 database.yml
 anahaber.iml
+.idea/.generators
+.idea/.name
+.idea/.rakeTasks
+.idea/encodings.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/scopes/scope_settings.xml
+.idea/vcs.xml
+.idea/workspace.xml
