@@ -8,7 +8,6 @@ class PagesController < ApplicationController
 
     result = Net::HTTP.get(URI.parse(news[params[:kind].to_sym]))
 
-    puts result
     render text: result, format: :xml
   end
 end
