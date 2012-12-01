@@ -1,7 +1,3 @@
-data = new Array();
-labels = new Array();
-jsonArray = new Array();
-
 function draw_tree(elem, dataJson) {
     set_width(elem);
     set_height(elem);
@@ -22,47 +18,44 @@ function set_height(elem) {
 }
 
 function set_width(elem) {
-    elem.width(($(window).width() / 4));
+    elem.width(($(window).width()));
 }
 
-$(document).ready(function () {
+function get_news(kind) {
+    data = new Array();
+    labels = new Array();
+    jsonArray = new Array();
+
     $.ajax({
         type:"GET",
         async:false,
-        url:"/pages/get_news?kind=world",
+        url:"/pages/get_news?kind=" + kind,
         dataType:"xml",
         success:function (xml) {
             $(xml).find("item").each(function () {
                 data.push(parseInt($(this).find("description").text().replace(/(.*?)(\d+)( haber makalesinin .*)/, "$2")));
-                labels.push($(this).find("title").text());
+                labels.push('<a href="' + $(this).find("link").text() + '" target="_blank">' + $(this).find("title").text() + "</a>");
             });
         }
     });
 
     for(i = 0; i < data.length; i++) {
-       jsonArray.push({"label":labels[i],"value":data[i]});
+        jsonArray.push({"label":labels[i],"value":data[i]});
     }
 
     var json_text = JSON.stringify(jsonArray);
     var dataJson = JSON.parse(json_text);
 
-    draw_tree($('#popular'), dataJson);
-
-    $('#health').html(json_text);
-//    draw_tree($('#world'), dataJson);
-//    draw_tree($('#tech'), dataJson);
-//    draw_tree($('#health'), dataJson);
-    Treemap.draw("world", $("#world").width(), $(window).height() - 100, data, labels, {'label':{'font-size':'16px'}});
+    draw_tree($('#' + kind), dataJson);
 
     $(window).smartresize(function () {
-        $("#container-first").html('');
-        Treemap.draw("world", $("#world").width(), $(window).height() - 100, data, labels);
+        draw_tree($('#' + kind), dataJson);
     });
+}
 
-    $(window).smartresize(function () {
-        draw_tree($('#popular'), dataJson);
-//        draw_tree($('#world'), dataJson);
-//        draw_tree($('#tech'), dataJson);
-//        draw_tree($('#health'), dataJson);
-    });
+$(document).ready(function () {
+    get_news('world');
+    get_news('national');
+    get_news('economics');
+    get_news('science');
 });
