@@ -94,7 +94,7 @@
                 'display': 'inline',
                 'position': 'relative',
                 'text-align': 'center',
-                'font-size': '24px'
+                'font-size': '40px'
             });
             $box.append($content);
 
@@ -109,9 +109,9 @@
     TreeMap.prototype.fitLabelFontSize = function($content, node) {
         var nodeBounds = node.bounds
         while ($content.height() + TreeMap.TOP_MARGIN > nodeBounds.height || $content.width() + TreeMap.SIDE_MARGIN > nodeBounds.width) {
-            var fontSize = parseFloat($content.css('font-size')) - 3;
-            if (fontSize < 15) {
-                $content.remove();
+            var fontSize = parseFloat($content.css('font-size')) - 1;
+            if (fontSize < 5) {
+//                $content.remove();
                 break;
             }
             $content.css('font-size', fontSize + 'px');
