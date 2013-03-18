@@ -18,7 +18,7 @@ function set_height(elem) {
 }
 
 function set_width(elem) {
-    elem.width(($(window).width()));
+    elem.width(($(window).width() - 20) / 3);
 }
 
 function get_news(kind) {
@@ -58,4 +58,6 @@ $(document).ready(function () {
     get_news('national');
     get_news('economics');
     get_news('science');
+    get_news('sports');
+    get_news('health');
 });
